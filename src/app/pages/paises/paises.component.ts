@@ -1,0 +1,20 @@
+import { Component, OnInit } from '@angular/core';
+import { PaisesService } from '../../services/paises.service';
+import { Pais } from 'src/app/interfaces/pais.interface';
+
+@Component({
+  selector: 'app-paises',
+  templateUrl: './paises.component.html',
+  styleUrls: ['./paises.component.css']
+})
+export class PaisesComponent implements OnInit {
+  paises: Pais[] = [];
+  constructor(public paisesService: PaisesService) { }
+
+  ngOnInit(): void {
+    this.paisesService.getPaises().then( paises => {
+      this.paises = paises;
+    });
+  }
+
+}
